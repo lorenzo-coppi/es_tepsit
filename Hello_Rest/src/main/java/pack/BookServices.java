@@ -46,12 +46,12 @@ public class BookServices {
 	@Path("{id}")
 	public Book get(@PathParam("{id}") long id) {
 		Author author = new Author();
-		author.setId(1);
-		author.setName("Joanne");
-		author.setSurname("Rowling");
+		author.setId(2);
+		author.setName("George");
+		author.setSurname("Orwell");
 		Book book = new Book();
-		book.setId(1);
-		book.setTitle("Harry Potter and the Philosopher's Stone");
+		book.setId(2);
+		book.setTitle("1984");
 		book.setLanguage("english");
 		List<Author> authors = new ArrayList<Author>();
 		authors.add(author);
@@ -61,6 +61,8 @@ public class BookServices {
 	@POST
 	public Response add(Book book) throws URISyntaxException {
 		long newId = 3;
+		JsonHandler handler = new JsonHandler();
+		handler.store(book);
 		return Response.created(new URI("api/books/" + newId)).build();
 	}
 	@PUT
